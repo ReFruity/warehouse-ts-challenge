@@ -35,4 +35,19 @@ Your solution should be runnable with `npm run start`.
 
 Run tests with `npm run test`.
 
+## Solution description
 
+My idea was to skim through the orders list and create a package for each order sequentially. 
+If we do not have enough items in the inventory for a package, we display a warning and skip this order altogether. 
+In this process we also reduce the stock amount of the items successfully packed in a package. 
+
+I used two HashMaps for this: `itemsByArticle` for quick inventory lookup and `orderItemCounts` for each order 
+to keep track of how many items should be included in the current package. 
+If there is an entry in the `orderItemCounts` where the stock amount is greater than in the corresponding entry 
+in `itemsByArticle`, we cannot form this package. If there is no such entry, then we decrease the stock amount.
+
+## TODO
+
+- Better warning messages on insufficient items (display which type of item is insufficient)
+- More tests on Packager.packageItems
+- Return a list of skipped orders
